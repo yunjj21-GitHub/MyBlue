@@ -1,0 +1,11 @@
+package com.yunjung.myblue.feature_note.domain.model
+
+import android.graphics.Bitmap
+
+data class Note(
+    val id : Int? = null,
+    val image : String, // Bitmap
+    val title : String,
+    val content : String,
+    val date : List<Int>
+)

@@ -1,4 +1,4 @@
-package com.yunjung.myblue
+package com.yunjung.myblue.feature_note.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -15,9 +15,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyBlueTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
+                    // 화면간의 이동만 정의
                 }
             }
         }
@@ -29,6 +28,7 @@ fun Greeting(name: String) {
     Text(text = "Hello $name!")
 }
 
+// 전체 화면 미리보기
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
