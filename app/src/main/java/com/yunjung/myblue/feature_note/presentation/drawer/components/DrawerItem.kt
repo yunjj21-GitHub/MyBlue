@@ -23,6 +23,7 @@ import com.yunjung.myblue.ui.theme.MyBlueTheme
 import com.yunjung.myblue.ui.theme.pointColor
 import com.yunjung.myblue.R
 import com.yunjung.myblue.ui.theme.Donoun
+import com.yunjung.myblue.ui.theme.mainColor
 
 @Composable
 fun DrawerItem(
@@ -31,7 +32,7 @@ fun DrawerItem(
     Box(
         modifier = Modifier
             .padding(32.dp, 0.dp, 32.dp, 0.dp) // Outer Padding
-            .background(color = pointColor)
+            .background(color = mainColor)
             .border(1.dp, SolidColor(Color.White), RectangleShape)
             .height(80.dp)
             .fillMaxWidth()
@@ -54,7 +55,7 @@ fun DrawerItem(
                         RoundedCornerShape(4.dp))
                     .width(64.dp)
                     .padding(2.dp), // Inner Padding
-            textAlign = TextAlign.Center
+                 textAlign = TextAlign.Center
             )
         }
         // 손잡이

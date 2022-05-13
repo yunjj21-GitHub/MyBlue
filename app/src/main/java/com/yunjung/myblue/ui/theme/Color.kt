@@ -8,5 +8,6 @@ val Purple700 = Color(0xFF3700B3)
 val Teal200 = Color(0xFF03DAC5)
 
 // 새로 추가한 컬러
-val mainColor = Color (0xFF1637ab)
-val pointColor = Color(0xFF9eccfe)
+val pointColor = Color (0xFF1637ab)
+val mainColor = Color(0xFF9eccfe)
+val polaroid = Color(0xFFf0eeed)

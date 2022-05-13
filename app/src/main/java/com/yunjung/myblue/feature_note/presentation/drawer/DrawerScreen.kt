@@ -3,6 +3,7 @@ package com.yunjung.myblue.feature_note.presentation.drawer
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -30,7 +31,7 @@ fun DrawerScreen(drawerName : List<String>) {
                 onClick = {
                     // Floating Button Click Event
                 },
-                backgroundColor = mainColor,
+                backgroundColor = pointColor
             ) {
                Icon(imageVector = Icons.Default.Add, contentDescription = "Add Drawer", tint = Color.White)
             }
@@ -46,7 +47,7 @@ fun DrawerScreen(drawerName : List<String>) {
             // 앱 이름
             Text(
                 text = "My Blue",
-                color = mainColor,
+                color = pointColor,
                 style = TextStyle(
                     fontSize = 40.sp,
                     fontFamily = YUniverse,
@@ -64,7 +65,7 @@ fun DrawerScreen(drawerName : List<String>) {
                 modifier = Modifier
                     .padding(32.dp , 0.dp , 32.dp , 0.dp)
                     .clip(RoundedCornerShape(15.dp , 15.dp , 0.dp , 0.dp))
-                    .background(pointColor)
+                    .background(mainColor)
                     .fillMaxWidth()
                     .height(25.dp)
             )
@@ -79,7 +80,7 @@ fun DrawerScreen(drawerName : List<String>) {
                 modifier = Modifier
                     .padding(32.dp , 0.dp , 32.dp , 64.dp)
                     .clip(RoundedCornerShape(0.dp , 0.dp , 15.dp , 15.dp))
-                    .background(pointColor)
+                    .background(mainColor)
                     .fillMaxWidth()
                     .height(25.dp)
             )
