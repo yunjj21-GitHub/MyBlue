@@ -30,28 +30,29 @@ fun DrawerItem(
 ) {
     Box(
         modifier = Modifier
+            .padding(32.dp, 0.dp, 32.dp, 0.dp) // Outer Padding
             .background(color = pointColor)
             .border(1.dp, SolidColor(Color.White), RectangleShape)
-            .height(50.dp)
-            .width(120.dp)
+            .height(80.dp)
+            .fillMaxWidth()
     ){
         // 이름표
         Row(
             modifier = Modifier
-                .padding(2.dp) // Outer Padding
+                .padding(5.dp) // Outer Padding
                 .align(Alignment.TopEnd)
-                .clip(RoundedCornerShape(2.dp))
+                .clip(RoundedCornerShape(4.dp))
                 .background(Color.White)
-                .padding(1.dp) // Inner Padding
+                .padding(2.dp) // Inner Padding
         ) {
             Text(
                 text = name,
-                style = TextStyle(fontSize = 5.sp, fontFamily = Donoun),
+                style = TextStyle(fontSize = 10.sp, fontFamily = Donoun),
                 modifier = Modifier
                     .background(Color.White)
-                    .border(0.5.dp, SolidColor(Color.Red) ,
-                        RoundedCornerShape(2.dp))
-                    .width(30.dp)
+                    .border(1.dp, SolidColor(Color.Red) ,
+                        RoundedCornerShape(4.dp))
+                    .width(64.dp)
                     .padding(2.dp), // Inner Padding
             textAlign = TextAlign.Center
             )
@@ -62,7 +63,7 @@ fun DrawerItem(
             contentDescription = "손잡이",
             modifier = Modifier
                 .align(Alignment.Center)
-                .size(8.dp)
+                .size(12.dp)
         )
     }
 }
