@@ -4,7 +4,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -24,7 +26,7 @@ import com.yunjung.myblue.feature_note.presentation.drawer.components.DrawerItem
 import com.yunjung.myblue.ui.theme.*
 
 @Composable
-fun DrawerScreen(drawerName : List<String>) {
+fun DrawerScreen(drawerNames : List<String>) {
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
@@ -43,6 +45,7 @@ fun DrawerScreen(drawerName : List<String>) {
             modifier = Modifier
                 .background(Color.White)
                 .fillMaxSize()
+                .verticalScroll(rememberScrollState())
         ) {
             // 앱 이름
             Text(
@@ -54,7 +57,7 @@ fun DrawerScreen(drawerName : List<String>) {
                     fontWeight = Bold
                 ),
                 modifier = Modifier
-                    .padding(64.dp) // Outer Padding
+                    .padding(50.dp) // Outer Padding
                     .fillMaxWidth(),
                 textAlign = TextAlign.Center
             )
@@ -71,7 +74,7 @@ fun DrawerScreen(drawerName : List<String>) {
             )
 
             // 서랍 칸
-            for(name in drawerName){
+            for(name in drawerNames){
                 DrawerItem(name = name)
             }
 
@@ -90,8 +93,8 @@ fun DrawerScreen(drawerName : List<String>) {
 
 @Preview
 @Composable
-fun DefaultPreView(){
-    var drawerNames = mutableListOf<String>("와인바", "카페", "비건식당", "영화", " ", " ")
+fun DrawerPreView(){
+    var drawerNames = mutableListOf<String>("와인바", "카페", "비건식당", "영화", " ")
     MyBlueTheme {
         DrawerScreen(drawerNames)
     }

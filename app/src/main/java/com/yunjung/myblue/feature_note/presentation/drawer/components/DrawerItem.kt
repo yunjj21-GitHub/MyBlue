@@ -48,7 +48,7 @@ fun DrawerItem(
         ) {
             Text(
                 text = name,
-                style = TextStyle(fontSize = 10.sp, fontFamily = Donoun),
+                style = TextStyle(fontSize = 12.sp, fontFamily = Donoun),
                 modifier = Modifier
                     .background(Color.White)
                     .border(1.dp, SolidColor(Color.Red) ,
@@ -72,7 +72,7 @@ fun DrawerItem(
 // 미리보기
 @Preview(showBackground = true)
 @Composable
-fun DefaultPreview() {
+fun DrawerItemPreview() {
     MyBlueTheme {
         DrawerItem("와인바")
     }

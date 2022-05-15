@@ -91,11 +91,11 @@ fun NotesScreen(
 
 @Preview(showBackground = true)
 @Composable
-fun DefalutPreview(){
+fun NotesPreview(){
     MyBlueTheme {
         val note1 = Note(
             id = 1,
-            drawerName = "와인바",
+            drawerName = "소설",
             image = "",
             title = "제목",
             content = "내용",
@@ -104,7 +104,7 @@ fun DefalutPreview(){
 
         val note2 = Note(
             id = 1,
-            drawerName = "와인바",
+            drawerName = "소설",
             image = "",
             title = "제목",
             content = "내용",

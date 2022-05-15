@@ -39,18 +39,18 @@ fun NoteItem (
                 }
             )
             .background(polaroid)
-            .height(255.dp)
             .width(180.dp)
+            .height(250.dp)
             .padding(12.dp) // Inner Padding
     ) {
         // 이미지
         Image(
-            painter = painterResource(id = R.drawable.ic_launcher_background),
+            painter = painterResource(id = R.drawable.ex1),
             contentDescription = "Image",
             modifier = Modifier
                 .clip(RoundedCornerShape(5.dp))
-                .height(180.dp)
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .height(180.dp),
             contentScale = ContentScale.Crop
         )
 
@@ -69,7 +69,7 @@ fun NoteItem (
             text = "${note.title}",
             fontSize = 15.sp,
             modifier = Modifier
-                .padding(0.dp, 8.dp, 0.dp, 8.dp)
+                .padding(0.dp, 8.dp, 0.dp, 0.dp)
                 .fillMaxWidth(),
             textAlign = TextAlign.Center,
             maxLines = 1
@@ -80,7 +80,7 @@ fun NoteItem (
 // 미리보기
 @Preview(showBackground = true)
 @Composable
-fun DefaultPreview() {
+fun NoteItemPreview() {
     val note = Note(
         id = 1,
         drawerName = "와인바",
