@@ -1,28 +1,20 @@
 package com.yunjung.myblue.feature_note.presentation.notes
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.More
-import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
 import com.yunjung.myblue.ui.theme.YUniverse
 import com.yunjung.myblue.ui.theme.mainColor
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -31,7 +23,9 @@ import com.yunjung.myblue.feature_note.domain.model.Note
 import com.yunjung.myblue.feature_note.presentation.notes.components.NoteItem
 import com.yunjung.myblue.feature_note.presentation.util.Screen
 import com.yunjung.myblue.ui.theme.MyBlueTheme
-import com.yunjung.myblue.ui.theme.pointColor
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -39,6 +33,8 @@ fun NotesScreen(
     navController: NavController,
     name : String
 ) {
+    var expanded by remember { mutableStateOf(false) }
+
     Scaffold(
         scaffoldState = rememberScaffoldState(),
         topBar = {
@@ -60,10 +56,30 @@ fun NotesScreen(
                 actions = {
                     IconButton(
                         onClick = {
-                            // IconButton Click Event
+                            expanded = true // Drawer 삭제하기 메뉴를 띄움
                          }
                     ) {
                         Icon(imageVector = Icons.Filled.MoreVert , contentDescription = "More")
+
+                        // Drawer 삭제하기 메뉴
+                        DropdownMenu(
+                            expanded = expanded,
+                            onDismissRequest = { expanded = false },
+                            modifier = Modifier.width(130.dp)
+                        ) {
+                            DropdownMenuItem(
+                                onClick = {
+                                    // 삭제하기 메뉴 클릭 이벤트
+                                }
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Filled.Delete,
+                                    contentDescription = "DeleteIcon",
+                                    modifier = Modifier.padding(0.dp, 0.dp, 10.dp, 0.dp)
+                                )
+                                Text("삭제하기")
+                            }
+                        }
                     }
                 },
                 backgroundColor = mainColor,

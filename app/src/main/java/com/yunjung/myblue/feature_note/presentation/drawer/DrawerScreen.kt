@@ -45,7 +45,7 @@ fun DrawerScreen(
         scaffoldState = rememberScaffoldState()
     ){
         // 뷰모델 작업
-        var drawerNames = mutableListOf<String>("소설", "와인바", "비건식당", "영화", "")
+        var drawerNames = mutableListOf<String>("소설", "와인바", "비건식당", "영화", "", "")
 
         /* 화면 디자인 */
         Column(
