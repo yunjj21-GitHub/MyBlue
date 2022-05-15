@@ -29,9 +29,14 @@ import com.yunjung.myblue.R
 import com.yunjung.myblue.ui.theme.*
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun AddEditNoteScreen() {
+fun AddEditNoteScreen(
+    navController: NavController,
+    name : String
+) {
     Scaffold(
         scaffoldState = rememberScaffoldState(),
         topBar = {
@@ -39,12 +44,12 @@ fun AddEditNoteScreen() {
                 title = {
                     Text(
                         text = "글 작성하기",
-                        style = TextStyle(fontSize = 25.sp, fontFamily = YUniverse)
+                        style = TextStyle(fontSize = 20.sp, fontFamily = YUniverse)
                     )
                 },
                 navigationIcon = {
                     IconButton(onClick = {
-                        // BackButton Click Event
+                        navController.navigateUp() // 뒤로가기
                     }) {
                         Icon(imageVector = Icons.Filled.ArrowBack , contentDescription = "backIcon")
                     }
@@ -130,7 +135,7 @@ fun AddEditNoteScreen() {
                     Text(
                         text = "취소하기",
                         color = mainColor,
-                        style = TextStyle(fontSize = 23.sp, fontFamily = YUniverse),
+                        style = TextStyle(fontSize = 18.sp, fontFamily = YUniverse),
                         modifier = Modifier.padding(2.dp),
                         textAlign = TextAlign.Center
                     )
@@ -147,7 +152,7 @@ fun AddEditNoteScreen() {
                     Text(
                         text = "등록하기",
                         color = Color.White,
-                        style = TextStyle(fontSize = 23.sp, fontFamily = YUniverse),
+                        style = TextStyle(fontSize = 18.sp, fontFamily = YUniverse),
                         modifier = Modifier.padding(2.dp),
                         textAlign = TextAlign.Center
                     )
@@ -161,6 +166,6 @@ fun AddEditNoteScreen() {
 @Composable
 fun AddEditNotePreView(){
     MyBlueTheme {
-        AddEditNoteScreen()
+        AddEditNoteScreen(rememberNavController(), "소설")
     }
 }

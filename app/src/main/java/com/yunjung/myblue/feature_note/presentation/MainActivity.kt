@@ -8,9 +8,16 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.yunjung.myblue.feature_note.domain.model.Note
 import com.yunjung.myblue.feature_note.presentation.add_edit_note.AddEditNoteScreen
+import com.yunjung.myblue.feature_note.presentation.drawer.DrawerScreen
 import com.yunjung.myblue.feature_note.presentation.notes.NotesScreen
+import com.yunjung.myblue.feature_note.presentation.util.Screen
 import com.yunjung.myblue.ui.theme.MyBlueTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,8 +26,47 @@ class MainActivity : ComponentActivity() {
         setContent {
             MyBlueTheme {
                 Surface(color = MaterialTheme.colors.background) {
-                    // 화면간의 이동만 정의
-                    AddEditNoteScreen()
+
+                    val navController = rememberNavController()
+
+                    // NavHost 생성
+                    NavHost(
+                        navController = navController,
+                        startDestination = Screen.DrawerScreen.route // DrawerScreen을 시작화면으로 지정
+                    ){
+                        // DrawerScreen(시작화면)으로 이동
+                        composable(route = Screen.DrawerScreen.route){
+                            DrawerScreen(navController)
+                        }
+
+                        // NotesScreen으로 이동
+                        composable(
+                            route = Screen.NotesScreen.route + "/{name}",
+                            arguments = listOf(
+                                navArgument("name") {
+                                    type = NavType.StringType
+                                }
+                            )
+                        ){ backStackEntry ->
+                            NotesScreen(
+                                navController = navController,
+                                name = backStackEntry.arguments?.getString("name").toString()
+                            )
+                        }
+
+                        // AddEditScreen으로 이동
+                        composable(route = Screen.AddEditNoteScreen.route + "/{name}",
+                            arguments = listOf(
+                                navArgument("name") {
+                                    type = NavType.StringType
+                                }
+                            )) { backStackEntry ->
+                            AddEditNoteScreen(
+                                navController = navController ,
+                                name = backStackEntry.arguments?.getString("name").toString()
+                            )
+                        }
+                    }
                 }
             }
         }
@@ -44,6 +90,6 @@ fun MainPreview() {
     MyBlueTheme {
         // DrawerScreen(drawerNames = drawerNames)
         // NotesScreen(name = "와인바" , notes = notes)
-        AddEditNoteScreen()
+        // AddEditNoteScreen()
     }
 }

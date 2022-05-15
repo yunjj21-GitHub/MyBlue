@@ -22,16 +22,20 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.yunjung.myblue.feature_note.presentation.drawer.components.DrawerItem
 import com.yunjung.myblue.ui.theme.*
 
 @Composable
-fun DrawerScreen(drawerNames : List<String>) {
+fun DrawerScreen(
+    navController: NavController
+) {
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                    // Floating Button Click Event
+                    // Drawer 추가 안내
                 },
                 backgroundColor = pointColor
             ) {
@@ -40,6 +44,9 @@ fun DrawerScreen(drawerNames : List<String>) {
         },
         scaffoldState = rememberScaffoldState()
     ){
+        // 뷰모델 작업
+        var drawerNames = mutableListOf<String>("소설", "와인바", "비건식당", "영화", "")
+
         /* 화면 디자인 */
         Column(
             modifier = Modifier
@@ -75,7 +82,7 @@ fun DrawerScreen(drawerNames : List<String>) {
 
             // 서랍 칸
             for(name in drawerNames){
-                DrawerItem(name = name)
+                DrawerItem(navController = navController, name = name)
             }
 
             // 서랍 아랫단
@@ -94,8 +101,7 @@ fun DrawerScreen(drawerNames : List<String>) {
 @Preview
 @Composable
 fun DrawerPreView(){
-    var drawerNames = mutableListOf<String>("와인바", "카페", "비건식당", "영화", " ")
     MyBlueTheme {
-        DrawerScreen(drawerNames)
+        DrawerScreen(rememberNavController())
     }
 }

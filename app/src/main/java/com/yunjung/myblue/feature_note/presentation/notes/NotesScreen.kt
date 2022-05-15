@@ -25,16 +25,19 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.yunjung.myblue.feature_note.domain.model.Note
 import com.yunjung.myblue.feature_note.presentation.notes.components.NoteItem
+import com.yunjung.myblue.feature_note.presentation.util.Screen
 import com.yunjung.myblue.ui.theme.MyBlueTheme
 import com.yunjung.myblue.ui.theme.pointColor
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun NotesScreen(
-    name : String,
-    notes : List<Note>
+    navController: NavController,
+    name : String
 ) {
     Scaffold(
         scaffoldState = rememberScaffoldState(),
@@ -43,13 +46,13 @@ fun NotesScreen(
                 title = {
                     Text(
                         text = name,
-                        style = TextStyle(fontSize = 25.sp, fontFamily = YUniverse)
+                        style = TextStyle(fontSize = 20.sp, fontFamily = YUniverse)
                     )
                 },
                 navigationIcon = {
                     IconButton(
                         onClick = {
-                            // BackButton Click Event
+                            navController.navigateUp() // 뒤로가기
                         }) {
                             Icon(imageVector = Icons.Filled.ArrowBack , contentDescription = "backIcon")
                         }
@@ -70,7 +73,7 @@ fun NotesScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                    // FloatingActionButton Click Event
+                    navController.navigate(Screen.AddEditNoteScreen.route + "/$name")
                 },
                 backgroundColor = mainColor
             ) {
@@ -78,6 +81,17 @@ fun NotesScreen(
             }
         }
     ) {
+        // 뷰모델 작업
+        val note = Note(
+            id = 1,
+            drawerName = "소설",
+            image = "",
+            title = "제목",
+            content = "내용",
+            date = listOf(2022, 5, 12)
+        )
+        val notes = listOf<Note>(note, note, note, note, note, note)
+
         /* 화면 구성 */
         LazyVerticalGrid(
             cells =  GridCells.Adaptive(minSize = 180.dp)
@@ -93,24 +107,6 @@ fun NotesScreen(
 @Composable
 fun NotesPreview(){
     MyBlueTheme {
-        val note1 = Note(
-            id = 1,
-            drawerName = "소설",
-            image = "",
-            title = "제목",
-            content = "내용",
-            date = listOf(2022, 5, 12)
-        )
-
-        val note2 = Note(
-            id = 1,
-            drawerName = "소설",
-            image = "",
-            title = "제목",
-            content = "내용",
-            date = listOf(2022, 5, 12)
-        )
-        val notes = listOf<Note>(note1, note2)
-        NotesScreen(name = "와인바", notes)
+        NotesScreen(navController = rememberNavController(), name = "와인바")
     }
 }

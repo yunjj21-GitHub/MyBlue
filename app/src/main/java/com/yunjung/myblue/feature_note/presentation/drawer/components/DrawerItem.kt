@@ -3,6 +3,7 @@ package com.yunjung.myblue.feature_note.presentation.drawer.components
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
@@ -19,23 +20,31 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.yunjung.myblue.ui.theme.MyBlueTheme
 import com.yunjung.myblue.ui.theme.pointColor
 import com.yunjung.myblue.R
+import com.yunjung.myblue.feature_note.presentation.util.Screen
 import com.yunjung.myblue.ui.theme.Donoun
 import com.yunjung.myblue.ui.theme.mainColor
 
 @Composable
 fun DrawerItem(
+    navController: NavController,
     name : String
 ) {
     Box(
         modifier = Modifier
-            .padding(32.dp, 0.dp, 32.dp, 0.dp) // Outer Padding
+            .padding(32.dp , 0.dp , 32.dp , 0.dp) // Outer Padding
             .background(color = mainColor)
-            .border(1.dp, SolidColor(Color.White), RectangleShape)
+            .border(1.dp , SolidColor(Color.White) , RectangleShape)
             .height(80.dp)
             .fillMaxWidth()
+            .clickable {
+                // NotesScreen으로 이동
+                navController.navigate(Screen.NotesScreen.route + "/$name")
+            }
     ){
         // 이름표
         Row(
@@ -51,8 +60,10 @@ fun DrawerItem(
                 style = TextStyle(fontSize = 12.sp, fontFamily = Donoun),
                 modifier = Modifier
                     .background(Color.White)
-                    .border(1.dp, SolidColor(Color.Red) ,
-                        RoundedCornerShape(4.dp))
+                    .border(
+                        1.dp , SolidColor(Color.Red) ,
+                        RoundedCornerShape(4.dp)
+                    )
                     .width(64.dp)
                     .padding(2.dp), // Inner Padding
                  textAlign = TextAlign.Center
@@ -74,6 +85,6 @@ fun DrawerItem(
 @Composable
 fun DrawerItemPreview() {
     MyBlueTheme {
-        DrawerItem("와인바")
+        // DrawerItem("와인바")
     }
 }
