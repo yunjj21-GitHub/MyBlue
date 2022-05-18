@@ -33,7 +33,7 @@ fun NotesScreen(
     navController: NavController,
     name : String
 ) {
-    var expanded by remember { mutableStateOf(false) }
+    var dropDownMenuExpanded by remember { mutableStateOf(false) }
 
     Scaffold(
         scaffoldState = rememberScaffoldState(),
@@ -56,20 +56,21 @@ fun NotesScreen(
                 actions = {
                     IconButton(
                         onClick = {
-                            expanded = true // Drawer 삭제하기 메뉴를 띄움
+                            // 드롭다운 메뉴를 펼친다.
+                            dropDownMenuExpanded = true
                          }
                     ) {
                         Icon(imageVector = Icons.Filled.MoreVert , contentDescription = "More")
 
-                        // Drawer 삭제하기 메뉴
+                        // 드롭다운 메뉴를 그린다.
                         DropdownMenu(
-                            expanded = expanded,
-                            onDismissRequest = { expanded = false },
-                            modifier = Modifier.width(130.dp)
+                            expanded = dropDownMenuExpanded,
+                            onDismissRequest = { dropDownMenuExpanded = false },
+                            modifier = Modifier.width(165.dp)
                         ) {
                             DropdownMenuItem(
                                 onClick = {
-                                    // 삭제하기 메뉴 클릭 이벤트
+                                    // 삭제하기 아이템 클릭시 이벤트
                                 }
                             ) {
                                 Icon(
@@ -77,9 +78,10 @@ fun NotesScreen(
                                     contentDescription = "DeleteIcon",
                                     modifier = Modifier.padding(0.dp, 0.dp, 10.dp, 0.dp)
                                 )
-                                Text("삭제하기")
+                                Text("서랍 삭제하기")
                             }
                         }
+
                     }
                 },
                 backgroundColor = mainColor,
@@ -93,7 +95,7 @@ fun NotesScreen(
                 },
                 backgroundColor = mainColor
             ) {
-               Icon(imageVector = Icons.Default.Add , contentDescription = "Note Add", tint = Color.White)
+               Icon(imageVector = Icons.Default.Create , contentDescription = "Note Add", tint = Color.White)
             }
         }
     ) {

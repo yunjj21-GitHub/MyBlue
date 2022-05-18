@@ -1,14 +1,12 @@
 package com.yunjung.myblue.feature_note.presentation.drawer.components
 
+import android.app.AlertDialog
 import android.graphics.Paint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -30,51 +28,51 @@ import com.yunjung.myblue.R
 import com.yunjung.myblue.ui.theme.MyBlueTheme
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 
 @Composable
-fun AddDrawerDialogContent(){
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .fillMaxHeight()
-            .background(Color.Black)
-    ){
+fun AddDrawerDialog(){
+    Dialog(
+        onDismissRequest = {
+        }
+    ) {
         Column(
             modifier = Modifier
                 .width(320.dp)
-                .height(355.dp)
+                .height(365.dp)
                 .clip(RoundedCornerShape(10.dp))
                 .background(Color.White)
         ) {
             // 닫기 버튼
             Image(
                 painter = painterResource(R.drawable.ic_close) ,
-                contentDescription = "CloseIcon",
+                contentDescription = "CloseIcon" ,
                 modifier = Modifier
                     .padding(0.dp , 15.dp , 15.dp , 0.dp)
                     .fillMaxWidth()
-                    .height(35.dp),
+                    .height(35.dp) ,
                 alignment = TopEnd
             )
 
             // 중간 이미지
             Image(
                 painter = painterResource(id = R.drawable.ic_empty_drawer) ,
-                contentDescription = "EmptyDrawerImage",
+                contentDescription = "EmptyDrawerImage" ,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(75.dp),
-                alignment = Alignment.Center,
+                    .height(75.dp) ,
+                alignment = Alignment.Center ,
             )
 
             // Tile
             Text(
-                text = "서랍 생성하기",
+                text = "서랍 생성하기" ,
                 style = TextStyle(
-                    fontSize = 23.sp,
-                    fontWeight = FontWeight.Bold,
+                    fontSize = 23.sp ,
+                    fontWeight = FontWeight.Bold ,
                     textAlign = TextAlign.Center
-                ),
+                ) ,
                 modifier = Modifier
                     .padding(0.dp , 10.dp , 0.dp , 0.dp)
                     .fillMaxWidth()
@@ -82,12 +80,12 @@ fun AddDrawerDialogContent(){
 
             // Content
             Text(
-                text = "새롭게 생성할\n서랍의 이름을 지어주세요.",
+                text = "새롭게 생성할\n서랍의 이름을 지어주세요." ,
                 style = TextStyle(
-                    color = Color.Gray,
-                    fontWeight = FontWeight.Bold,
+                    color = Color.Gray ,
+                    fontWeight = FontWeight.Bold ,
                     textAlign = TextAlign.Center
-                ),
+                ) ,
                 modifier = Modifier
                     .padding(10.dp)
                     .fillMaxWidth()
@@ -96,12 +94,12 @@ fun AddDrawerDialogContent(){
             // 서랍 이름을 받아오는 TextField
             var newDrawerName by remember { mutableStateOf(TextFieldValue("")) }
             OutlinedTextField(
-                value =  newDrawerName,
+                value = newDrawerName ,
                 onValueChange = { it ->
                     newDrawerName = it
-                },
-                label = null,
-                singleLine = true,
+                } ,
+                label = null ,
+                singleLine = true ,
                 modifier = Modifier
                     .padding(30.dp , 0.dp , 30.dp , 0.dp)
                     .fillMaxWidth()
@@ -111,7 +109,7 @@ fun AddDrawerDialogContent(){
             Button(
                 onClick = {
                     // 완료 버튼 클릭 이벤트
-                },
+                } ,
                 modifier = Modifier
                     .padding(30.dp , 10.dp , 30.dp , 10.dp)
                     .fillMaxWidth()
@@ -125,8 +123,8 @@ fun AddDrawerDialogContent(){
 
 @Preview(showBackground = true)
 @Composable
-fun AddDrawerDialogContentPreview(){
+fun AddDrawerDialogPreview(){
     MyBlueTheme {
-        AddDrawerDialogContent()
+        AddDrawerDialog()
     }
 }
